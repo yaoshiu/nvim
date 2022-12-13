@@ -1,0 +1,20 @@
+snippet gcd
+  template<typename T>
+  T gcd(T a, T b) { return b ? gcd(b, a % b) : a; }
+
+snippet exgcd
+  template<typename T>
+  T gcd(T a, T b, T &x, T &y) {
+    if (!b) {
+      x = 1;
+      y = 0;
+      return a;
+    }
+    T d = gcd(b, a % b, x, y);
+    T t = x;
+    x = y;
+    y = t - (a / b) * y;
+    return d;
+  }
+
+
