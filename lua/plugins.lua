@@ -122,6 +122,8 @@ require('packer').startup(function(use)
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   } -- autopairs
+  use 'h-hg/fcitx.nvim' -- fcitx
+  use 'p00f/nvim-ts-rainbow' -- ts rainbow
 
   -- color schemes
   use 'marko-cerovac/material.nvim' -- material

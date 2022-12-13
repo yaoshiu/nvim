@@ -323,6 +323,12 @@ require 'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
   },
+  -- ts rainbow
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  }
 }
 
 -- tree
@@ -762,6 +768,13 @@ wk.register({
   ['<s-tab>'] = { [[pumvisible() ? '<c-p>' : '<bs>']], '<s-tab>' },
 }, { mode = 'i', expr = true })
 _G.MUtils = {}
+MUtils.CR = function()
+  if vim.fn.pumvisible() ~= 0 then
+      return npairs.esc('<c-e>') .. npairs.autopairs_cr()
+  else
+    return npairs.autopairs_cr()
+  end
+end
 MUtils.BS = function()
   if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ 'mode' }).mode == 'eval' then
     return npairs.esc('<c-e>') .. npairs.autopairs_bs()
@@ -771,6 +784,7 @@ MUtils.BS = function()
 end
 wk.register({
   ['<bs>'] = { MUtils.BS, '<bs>' },
+  ['<cr>'] = { MUtils.CR, '<cr>'}
 }, { mode = 'i', expr = true })
 
 -- treesitter context
