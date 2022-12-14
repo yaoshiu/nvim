@@ -6,50 +6,24 @@ vim.o.cindent = true
 vim.o.number = true
 vim.o.signcolumn = 'yes'
 vim.g.mapleader = ','
-
---which-key
-local wk = require('which-key')
+--  OR
+vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 -- packer.nvim
 require('plugins')
 
+--which-key
+local wk = require('which-key')
+
 -- navic
 local navic = require('nvim-navic')
-navic.setup {
-    icons = {
-        File          = " ",
-        Module        = " ",
-        Namespace     = " ",
-        Package       = " ",
-        Class         = " ",
-        Method        = " ",
-        Property      = " ",
-        Field         = " ",
-        Constructor   = " ",
-        Enum          = "練",
-        Interface     = "練",
-        Function      = " ",
-        Variable      = " ",
-        Constant      = " ",
-        String        = " ",
-        Number        = " ",
-        Boolean       = "◩ ",
-        Array         = " ",
-        Object        = " ",
-        Key           = " ",
-        Null          = "ﳠ ",
-        EnumMember    = " ",
-        Struct        = " ",
-        Event         = " ",
-        Operator      = " ",
-        TypeParameter = " ",
-    },
-    highlight = true,
-    separator = " > ",
-    depth_limit = 0,
-    depth_limit_indicator = "..",
-    safe_output = true,
-}
+navic.setup {}
+
+-- mason/lspinstaller
+require('mason').setup()
+require('mason-lspconfig').setup({
+  automatic_installation = true
+})
 
 -- lspconfig
 -- Mappings.
@@ -125,6 +99,7 @@ local on_attach = function(client, bufnr)
 
   -- navic on_attach
   if client.server_capabilities.documentSymbolProvider then
+    print("lsp and navic attached")
     navic.attach(client, bufnr)
   end
 end
@@ -177,12 +152,6 @@ require 'lspconfig'.lemminx.setup {
   on_attach = on_attach,
   flags = lsp_flags,
 }
-
--- mason/lspinstaller
-require('mason').setup()
-require('mason-lspconfig').setup({
-  automatic_installation = true
-})
 
 -- Lspsaga
 local keymap = vim.keymap.set
@@ -779,7 +748,7 @@ MUtils.BS = function()
   if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ 'mode' }).mode == 'eval' then
     return npairs.esc('<c-e>') .. npairs.autopairs_bs()
   else
-    return napirs.autopairs_bs()
+    return npairs.autopairs_bs()
   end
 end
 wk.register({
