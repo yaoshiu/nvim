@@ -6,8 +6,6 @@ vim.o.cindent = true
 vim.o.number = true
 vim.o.signcolumn = 'yes'
 vim.g.mapleader = ','
---  OR
-vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 -- packer.nvim
 require('plugins')
