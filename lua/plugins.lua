@@ -1,3 +1,17 @@
+-- boostrapping
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
 -- auto compile
 vim.cmd([[
   augroup packer_user_config
@@ -124,8 +138,15 @@ require('packer').startup(function(use)
   } -- autopairs
   use 'h-hg/fcitx.nvim' -- fcitx
   use 'p00f/nvim-ts-rainbow' -- ts rainbow
+  use 'echasnovski/mini.ai' -- mini ai
+  use 'jayp0521/mason-nvim-dap.nvim' -- mason nvim dap
 
   -- color schemes
   use 'marko-cerovac/material.nvim' -- material
   use 'rafamadriz/neon' -- neon
+
+-- sync when first loaded
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)

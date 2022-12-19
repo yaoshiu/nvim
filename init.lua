@@ -109,6 +109,7 @@ local lsp_flags = {
 require 'lspconfig'.pyright.setup {
   on_attach = on_attach,
   flags = lsp_flags,
+  cmd = { "pyright-langserver", "--stdio", "--ignoreexternal"}
 } --Python
 require 'lspconfig'.clangd.setup {
   on_attach = on_attach,
@@ -130,10 +131,10 @@ require 'lspconfig'.marksman.setup {
   on_attach = on_attach,
   flags = lsp_flags,
 } --Markdown
-require 'lspconfig'.sqlls.setup {
-  on_attach = on_attach,
-  flags = lsp_flags,
-} --SQL
+--require 'lspconfig'.sqlls.setup {
+--  on_attach = on_attach,
+--  flags = lsp_flags,
+--} --SQL
 require 'lspconfig'.yamlls.setup {
   on_attach = on_attach,
   flags = lsp_flags,
@@ -149,6 +150,14 @@ require 'lspconfig'.sqls.setup {
 require 'lspconfig'.lemminx.setup {
   on_attach = on_attach,
   flags = lsp_flags,
+}
+require 'lspconfig'.tsserver.setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+require 'lspconfig'.quick_lint_js.setup {
+  on_attach = on_attach,
+  flags = lsp_flags
 }
 
 -- Lspsaga
@@ -608,6 +617,13 @@ wk.register({
 --vim.keymap.set('n', '<leader>crf', ':CRFiletype<CR>', { noremap = true, silent = false })
 --vim.keymap.set('n', '<leader>crp', ':CRProjects<CR>', { noremap = true, silent = false })
 
+-- mason nvim dap
+require('mason-nvim-dap').setup({
+  automatic_installation = true,
+  automatic_setup = true,
+})
+
+
 -- dap
 local dap = require'dap'
 wk.register({
@@ -777,6 +793,9 @@ require'nvim-web-devicons'.setup {
  -- will get overriden by `get_icons` option
  default = true;
 }
+
+-- mini ai
+require('mini.ai').setup()
 
 -- color scheme
 require('material').setup({
