@@ -140,7 +140,13 @@ require('packer').startup(function(use)
   use 'p00f/nvim-ts-rainbow' -- ts rainbow
   use 'echasnovski/mini.ai' -- mini ai
   use 'jayp0521/mason-nvim-dap.nvim' -- mason nvim dap
-
+  --use 'glepnir/indent-guides.nvim' -- indent guides
+  use 'ThePrimeagen/vim-be-good' -- vim be good
+  use 'lukas-reineke/indent-blankline.nvim' -- indent blankline
+  use {
+    'xeluxee/competitest.nvim', -- competitest
+    requires = 'MunifTanjim/nui.nvim',
+  }
   -- color schemes
   use 'marko-cerovac/material.nvim' -- material
   use 'rafamadriz/neon' -- neon
