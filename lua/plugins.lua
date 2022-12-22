@@ -37,9 +37,6 @@ require('packer').startup(function(use)
   } -- lightbulb
   use {
     'andrewferrier/textobj-diagnostic.nvim',
-    config = function()
-      require('textobj-diagnostic').setup()
-    end,
   } -- diagnostic
   use {
     'folke/trouble.nvim',
@@ -93,9 +90,6 @@ require('packer').startup(function(use)
       "smiteshp/nvim-navic",
       "kyazdani42/nvim-web-devicons", -- optional
     },
-    config = function()
-      require("barbecue").setup()
-    end,
   } -- barbecue
   use'yamatsum/nvim-cursorline' -- cursorline
   use'glepnir/dashboard-nvim' -- dashboard
@@ -110,32 +104,17 @@ require('packer').startup(function(use)
   use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
-    end
   }) -- nvim surround
   use {'kevinhwang91/nvim-hlslens'} -- nvim hlslens
-  use {
-    'folke/which-key.nvim',
-    config = function()
-      require("which-key").setup {
-      }
-    end
-  }
+  use 'folke/which-key.nvim' -- which key
   use {
     'declancm/cinnamon.nvim',
-    config = function() require('cinnamon').setup() end
   } -- cinnamon
   use 'dstein64/nvim-scrollview' -- scrollview
   use 'gorbit99/codewindow.nvim' -- codewindow
   use 'windwp/nvim-ts-autotag' -- autotag
   use 'nvim-treesitter/nvim-treesitter-context' -- treesitter context
-  use {
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  } -- autopairs
+  use "windwp/nvim-autopairs" -- autopairs
   use 'h-hg/fcitx.nvim' -- fcitx
   use 'p00f/nvim-ts-rainbow' -- ts rainbow
   use 'echasnovski/mini.ai' -- mini ai
