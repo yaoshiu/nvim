@@ -5,6 +5,7 @@ vim.o.cindent = true
 vim.o.number = true
 vim.o.signcolumn = 'yes'
 vim.g.mapleader = ','
+vim.o.fileencodings = 'ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1'
 
 -- packer.nvim
 require('plugins')
@@ -36,5 +37,10 @@ require('config.mini-ai')
 require('config.indent-blankline')
 require('config.autopairs')
 require('config.competitest')
+require('config.barbecue')
+require('config.cinnamon')
+require('config.nvim-surround')
+require('config.textobj-diagnostic')
+require('which-key')
 
 require('colorscheme')
